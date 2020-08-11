@@ -1,0 +1,9 @@
+{
+  "item.flight_rings.advanced_ring": "§ePure Flight Ring",
+  "item.flight_rings.basic_ring": "Basic Flight Ring",
+  "item.flight_rings.basic_ring_alt": "Basic Flight Ring",
+  "tooltip.flight_rings.basic": "§8Grants flight at the cost of",
+  "tooltip.flight_rings.basic2": "§8a severe hunger penalty",
+  "tooltip.flight_rings.advanced": "§8Grants unlimited flight"
+}
+

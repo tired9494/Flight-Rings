@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " Q ",
+    "G G",
+    " G "
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "Q": {
+      "item": "minecraft:ender_eye"
+    }
+  },
+  "result": {
+    "item": "flight_rings:basic_ring_alt",
+    "count": 1
+  }
+}
+
