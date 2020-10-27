@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " Q ",
+    " E ",
     "G G",
     " G "
   ],
@@ -9,7 +9,7 @@
     "G": {
       "item": "minecraft:gold_ingot"
     },
-    "Q": {
+    "E": {
       "item": "minecraft:ender_eye"
     }
   },

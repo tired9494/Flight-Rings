@@ -4,7 +4,10 @@ import flight_rings.flight_rings.FlightRings;
 import flight_rings.flight_rings.config.ModConfig;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,7 +16,6 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.world.World;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 
 public class AdvancedRing extends Item {
@@ -44,37 +46,56 @@ public class AdvancedRing extends Item {
         PlayerEntity player = (PlayerEntity) livingEntity;
         Item mainItem = player.getMainHandStack().getItem();
         Item offItem = player.getOffHandStack().getItem();
+        Item basic = FlightRings.BASIC_RING;
+        Item basicAlt = FlightRings.BASIC_RING_ALT;
+        Item advanced = FlightRings.ADVANCED_RING;
+        boolean flying = player.abilities.flying;
 
-        if (mainItem == FlightRings.ADVANCED_RING | offItem == FlightRings.ADVANCED_RING) {
+        if (mainItem == advanced | offItem == advanced) {
+            player.addExhaustion(ModConfig.INSTANCE.advancedExhaustion/6);
             if (useXP) {
                 // XP based flying,
                 if (player.experienceProgress > XPToUse | player.experienceLevel > 0) {
                     player.abilities.allowFlying = true;
-                    if (player.abilities.flying & player.experienceProgress > XPToUse) {
+                    if (flying & player.experienceProgress > XPToUse) {
                         player.experienceProgress = player.experienceProgress - XPToUse;
                     }
-                    else if (player.abilities.flying && player.experienceProgress < XPToUse && player.experienceLevel > 0) {
+                    else if (flying & player.experienceProgress < XPToUse & player.experienceLevel > 0) {
                         player.experienceLevel = player.experienceLevel - 1;
                         player.experienceProgress = 1F;
+                    }
+                }
+            }
+            else if (mainItem == advanced) {
+                // uses durability instead, with a chance per tick to damage. (As opposed to high durability and 1 damage per tick, to balance with mending)
+                if (player.getMainHandStack().getDamage() != 8999) {
+                    player.abilities.allowFlying = true;
+                    if (flying & Math.random() < damageChance) {
+                        player.addExhaustion(ModConfig.INSTANCE.advancedExhaustion);
+                        player.getMainHandStack().damage(1, player, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));}
+                }
+                else {
+                    livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 10, 0));
+                    player.abilities.allowFlying = false;
+                    player.abilities.flying = false;
+                }
+            }
+            else {
+                // ditto but offhand
+                if (player.getOffHandStack().getDamage() != 8999) {
+                    player.abilities.allowFlying = true;
+                    if (flying & Math.random() < damageChance) {
+                        player.addExhaustion(ModConfig.INSTANCE.advancedExhaustion);
+                        player.getOffHandStack().damage(1, player, e -> e.sendEquipmentBreakStatus(EquipmentSlot.OFFHAND));}
+                }
+                else {
+                    livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 10, 0));
+                    player.abilities.allowFlying = false;
+                    player.abilities.flying = false;
                 }
             }
         }
-        else if (mainItem == FlightRings.ADVANCED_RING) {
-            // uses durability instead, with a chance per tick to damage. (As opposed to high durability and 1 damage per tick, to balance with mending)
-            player.abilities.allowFlying = true;
-            if (player.abilities.flying & Math.random() < damageChance) {
-                player.getMainHandStack().damage(1, livingEntity, (Consumer) ((p) -> {
-                }));}
-            }
-        else {
-            // ditto but offhand
-                player.abilities.allowFlying = true;
-                if (player.abilities.flying & Math.random() < damageChance) {
-                    player.getOffHandStack().damage(1, livingEntity, (Consumer) ((p) -> {
-                    }));}
-            }
-        }
-        else if (!(mainItem == FlightRings.BASIC_RING_ALT || offItem == FlightRings.BASIC_RING_ALT || mainItem == FlightRings.BASIC_RING || offItem == FlightRings.BASIC_RING) && !player.abilities.creativeMode) {
+        else if (!(mainItem == basic | offItem == basic | mainItem == basicAlt | offItem == basicAlt) & !player.abilities.creativeMode) {
             player.abilities.allowFlying = false;
             player.abilities.flying = false;
         }
