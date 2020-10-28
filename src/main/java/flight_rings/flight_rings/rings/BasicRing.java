@@ -41,13 +41,13 @@ public class BasicRing extends Item {
         Item advanced = FlightRings.ADVANCED_RING;
         boolean flying = player.abilities.flying;
         if (!player.abilities.creativeMode) {
-            if ((mainItem == basic | offItem == basic | mainItem == basicAlt | offItem == basicAlt) & !(mainItem == advanced | offItem == advanced)) {
+            if ((offItem == basic || mainItem == basic || offItem == basicAlt || mainItem == basicAlt) && !(mainItem == advanced || offItem == advanced)) {
                 player.abilities.allowFlying = true;
                 player.addExhaustion(ModConfig.INSTANCE.basicExhaustion/4);
                 if (flying) {
                     player.addExhaustion(ModConfig.INSTANCE.basicExhaustion);
                 }
-                if (flying & ModConfig.INSTANCE.basicRingHasDurability & Math.random() < damageChance) {
+                if (flying && ModConfig.INSTANCE.basicRingHasDurability && Math.random() < damageChance) {
                     if (mainItem == basic | mainItem == basicAlt) {
                         if (player.getMainHandStack().getDamage() == 1) {
                             player.abilities.allowFlying = false;
@@ -64,7 +64,7 @@ public class BasicRing extends Item {
                     }
                 }
             }
-            else if (!(mainItem == advanced | offItem == advanced)) {
+            else if (!(mainItem == advanced || offItem == advanced)) {
                 player.abilities.allowFlying = false;
                 player.abilities.flying = false;
             }

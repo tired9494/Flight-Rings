@@ -51,16 +51,16 @@ public class AdvancedRing extends Item {
         Item advanced = FlightRings.ADVANCED_RING;
         boolean flying = player.abilities.flying;
 
-        if (mainItem == advanced | offItem == advanced) {
+        if (offItem == advanced || mainItem == advanced) {
             player.addExhaustion(ModConfig.INSTANCE.advancedExhaustion/6);
             if (useXP) {
                 // XP based flying,
-                if (player.experienceProgress > XPToUse | player.experienceLevel > 0) {
+                if (player.experienceLevel > 0 || player.experienceProgress > XPToUse) {
                     player.abilities.allowFlying = true;
-                    if (flying & player.experienceProgress > XPToUse) {
+                    if (flying && player.experienceProgress > XPToUse) {
                         player.experienceProgress = player.experienceProgress - XPToUse;
                     }
-                    else if (flying & player.experienceProgress < XPToUse & player.experienceLevel > 0) {
+                    else if (flying && player.experienceProgress < XPToUse && player.experienceLevel > 0) {
                         player.experienceLevel = player.experienceLevel - 1;
                         player.experienceProgress = 1F;
                     }
@@ -70,7 +70,7 @@ public class AdvancedRing extends Item {
                 // uses durability instead, with a chance per tick to damage. (As opposed to high durability and 1 damage per tick, to balance with mending)
                 if (player.getMainHandStack().getDamage() != 8999) {
                     player.abilities.allowFlying = true;
-                    if (flying & Math.random() < damageChance) {
+                    if (flying && Math.random() < damageChance) {
                         player.addExhaustion(ModConfig.INSTANCE.advancedExhaustion);
                         player.getMainHandStack().damage(1, player, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));}
                 }
@@ -84,7 +84,7 @@ public class AdvancedRing extends Item {
                 // ditto but offhand
                 if (player.getOffHandStack().getDamage() != 8999) {
                     player.abilities.allowFlying = true;
-                    if (flying & Math.random() < damageChance) {
+                    if (flying && Math.random() < damageChance) {
                         player.addExhaustion(ModConfig.INSTANCE.advancedExhaustion);
                         player.getOffHandStack().damage(1, player, e -> e.sendEquipmentBreakStatus(EquipmentSlot.OFFHAND));}
                 }
@@ -95,7 +95,7 @@ public class AdvancedRing extends Item {
                 }
             }
         }
-        else if (!(mainItem == basic | offItem == basic | mainItem == basicAlt | offItem == basicAlt) & !player.abilities.creativeMode) {
+        else if (!(offItem == basic || mainItem == basic || offItem == basicAlt ||  mainItem == basicAlt) && !player.abilities.creativeMode) {
             player.abilities.allowFlying = false;
             player.abilities.flying = false;
         }
