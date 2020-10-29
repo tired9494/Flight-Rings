@@ -40,7 +40,7 @@ public class BasicRing extends Item {
         Item basicAlt = FlightRings.BASIC_RING_ALT;
         Item advanced = FlightRings.ADVANCED_RING;
         boolean flying = player.abilities.flying;
-        if (!player.abilities.creativeMode) {
+        if (!(player.abilities.creativeMode || player.isSpectator())) {
             if ((offItem == basic || mainItem == basic || offItem == basicAlt || mainItem == basicAlt) && !(mainItem == advanced || offItem == advanced)) {
                 player.abilities.allowFlying = true;
                 player.addExhaustion(ModConfig.INSTANCE.basicExhaustion/4);

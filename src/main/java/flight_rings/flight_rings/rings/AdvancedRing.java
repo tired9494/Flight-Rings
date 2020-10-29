@@ -11,6 +11,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.world.World;
@@ -95,7 +96,7 @@ public class AdvancedRing extends Item {
                 }
             }
         }
-        else if (!(offItem == basic || mainItem == basic || offItem == basicAlt ||  mainItem == basicAlt) && !player.abilities.creativeMode) {
+        else if (!(offItem == basic || mainItem == basic || offItem == basicAlt ||  mainItem == basicAlt) && !(player.abilities.creativeMode || player.isSpectator())) {
             player.abilities.allowFlying = false;
             player.abilities.flying = false;
         }
