@@ -1,0 +1,24 @@
+{
+  "item.flight_rings.advanced_ring": "§ePure Flight Ring",
+  "item.flight_rings.advanced_ring_treasure": "§ePure Flight Ring",
+  "item.flight_rings.basic_ring": "Basic Flight Ring",
+  "item.flight_rings.basic_ring_alt": "Basic Flight Ring",
+  "item.flight_rings.basic_ring_treasure": "Basic Flight Ring",
+  "tooltip.flight_rings.basic": "§8Grants flight at the cost of",
+  "tooltip.flight_rings.basic2": "§8a severe hunger penalty",
+  "tooltip.flight_rings.advanced": "§8Grants unlimited flight",
+  "text.autoconfig.Flight Rings.option.basicOptions": "Basic Ring Options",
+  "text.autoconfig.Flight Rings.option.pureOptions": "Pure Ring Options",
+  "text.autoconfig.Flight Rings.option.misc": "Misc. Options",
+  "text.autoconfig.Flight Rings.option.basicOptions.enabled": "Enabled",
+  "text.autoconfig.Flight Rings.option.basicOptions.eye": "Ender Eye Recipe",
+  "text.autoconfig.Flight Rings.option.basicOptions.durability": "Durability",
+  "text.autoconfig.Flight Rings.option.basicOptions.exhaustion": "Hunger Cost",
+  "text.autoconfig.Flight Rings.option.pureOptions.exhaustion": "Hunger Cost",
+  "text.autoconfig.Flight Rings.option.pureOptions.xpEnabled": "Enable XP",
+  "text.autoconfig.Flight Rings.option.pureOptions.xpCost": "XP Cost",
+  "text.autoconfig.Flight Rings.option.misc.damageChance": "Damage Chance",
+  "text.autoconfig.Flight Rings.option.misc.treasure": "Chest Loot",
+  "text.autoconfig.Flight Rings.title": "Flight Rings Config"
+}
+

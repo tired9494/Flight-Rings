@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "flight_rings:basic_ring_treasure"
+  },
+  "result": "minecraft:gold_ingot",
+  "experience": 0.3,
+  "cookingtime": 200
+}
+

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "flight_rings",
+  "version": "1.5.2",
+  "name": "Flight Rings",
+  "authors": [
+    "tired9494"
+  ],
+  "contact": {
+    "sources": "https://github.com/tired9494"
+  },
+  "license": "MIT",
+  "icon": "assets/flight_rings/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "github.tired9494.flight_rings.FlightRings"
+    ],
+    "modmenu": [
+      "github.tired9494.flight_rings.config.FlightRingsConfig\$ModMenuIntegration"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.11.6",
+    "fabric": "*",
+    "minecraft": ">=1.17",
+    "cloth-config2": "*"
+  },
+  "suggests": {
+    "modmenu": "*"
+  }
+}

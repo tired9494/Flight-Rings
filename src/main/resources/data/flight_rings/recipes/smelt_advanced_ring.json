@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "flight_rings:advanced_ring_treasure"
+  },
+  "result": "minecraft:netherite_ingot",
+  "experience": 0.5,
+  "cookingtime": 200
+}
+
