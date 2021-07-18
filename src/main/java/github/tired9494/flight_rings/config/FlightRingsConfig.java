@@ -22,22 +22,23 @@ public class FlightRingsConfig implements ConfigData
      */
     @Comment("")
     @ConfigEntry.Gui.CollapsibleObject
-    public basicOptions basicOptions = new basicOptions();
+    public basicRingOptions basicRingOptions = new basicRingOptions();
 
 
-    public static class basicOptions
+    public static class basicRingOptions
     {
         @Comment("")
         public boolean enabled = true;
-
-        @Comment("Recipe uses an ender eye instead of quartz, §c§ldeletes all existing rings. §rRequires restart")
-        public boolean eye = false;
-
-        @Comment("Basic ring has durability")
+        @Comment("")
         public boolean durability = true;
-
+        @Comment("Durability of basic ring")
+        public int durabilityValue = 180;
+        @Comment("Recipe uses an ender eye instead of quartz. §c§lDeletes existing basic rings")
+        public boolean eye = false;
         @Comment("")
         public float exhaustion = 0.15F;
+        @Comment("Basic ring gives slow falling after breaking")
+        public boolean protects = false;
     }
 
 
@@ -47,16 +48,22 @@ public class FlightRingsConfig implements ConfigData
      */
     @Comment("")
     @ConfigEntry.Gui.CollapsibleObject
-    public pureOptions pureOptions = new pureOptions();
+    public pureRingOptions pureRingOptions = new pureRingOptions();
 
-    public static class pureOptions
+    public static class pureRingOptions
     {
         @Comment("")
-        public float exhaustion = 0.01F;
+        public boolean durability = true;
+        @Comment("Durability of pure ring")
+        public int durabilityValue = 9000;
+        @Comment("")
+        public float exhaustion = 0.03F;
         @Comment("Pure ring uses XP instead of durability")
         public boolean xpEnabled = false;
-        @Comment("How much XP the pure ring uses")
-        public float xpCost = 0.001F;
+        @Comment("How much percentage of the XP bar is used per second")
+        public float xpCost = 1.0F;
+        @Comment("Pure ring gives you slow falling when out of durability")
+        public boolean protects = true;
     }
 
     /**
@@ -72,8 +79,14 @@ public class FlightRingsConfig implements ConfigData
         @Comment("Percentage chance per tick (20/s) for a ring to lose durability")
         public double damageChance = 10;
 
-        @Comment("Disables recipes, §c§ldeletes all existing rings. §rRequires restart")
+        @Comment("Recipes disabled. §c§lDeletes all existing rings")
         public boolean treasure = false;
+
+        @Comment("Adds Trinkets support. §c§lDeletes all existing rings")
+        public boolean trinkets = false;
+
+        @Comment("Rings force flight when equipping or loading world midair")
+        public boolean autofly = true;
     }
 
 

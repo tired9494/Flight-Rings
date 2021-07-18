@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    {"id":  "flight_rings:t_basic_ring", "required": false},
+    {"id":  "flight_rings:t_advanced_ring", "required": false},
+    {"id":  "flight_rings:t_advanced_ring_treasure", "required": false},
+    {"id":  "flight_rings:t_basic_ring_treasure", "required": false},
+    {"id":  "flight_rings:t_basic_ring_alt", "required": false}
+  ]
+}

@@ -1,8 +1,9 @@
 {
   "required": true,
-  "package": "",
-  "compatibilityLevel": "JAVA_8",
+  "package": "github.tired9494.flight_rings.mixin",
+  "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "FlightRingsMixin"
   ],
   "client": [
   ],

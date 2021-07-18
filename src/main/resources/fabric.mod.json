@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "flight_rings",
-  "version": "1.5.2",
+  "version": "1.6",
   "name": "Flight Rings",
   "authors": [
     "tired9494"
@@ -20,6 +20,9 @@
       "github.tired9494.flight_rings.config.FlightRingsConfig\$ModMenuIntegration"
     ]
   },
+  "mixins": [
+    "flight_rings.mixins.json"
+  ],
   "depends": {
     "fabricloader": ">=0.11.6",
     "fabric": "*",
