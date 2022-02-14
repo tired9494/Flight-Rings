@@ -30,6 +30,7 @@
   "text.autoconfig.Flight Rings.option.pureRingOptions.protects": "Break Protection",
   "text.autoconfig.Flight Rings.option.misc.damageChance": "Damage & Hunger Chance",
   "text.autoconfig.Flight Rings.option.misc.treasure": "Recipes Disabled",
+  "text.autoconfig.Flight Rings.option.misc.chestLoot": "Chest Loot",
   "text.autoconfig.Flight Rings.option.misc.trinkets": "Trinkets Support",
   "text.autoconfig.Flight Rings.option.misc.autofly": "Autofly",
   "text.autoconfig.Flight Rings.title": "Flight Rings Config",

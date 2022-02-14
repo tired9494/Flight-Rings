@@ -82,6 +82,9 @@ public class FlightRingsConfig implements ConfigData
         @Comment("Recipes disabled. §c§lDeletes all existing rings")
         public boolean treasure = false;
 
+        @Comment("Enables rings to spawn in chest loot")
+        public boolean chestLoot = true;
+
         @Comment("Adds Trinkets support. §c§lDeletes all existing rings")
         public boolean trinkets = false;
 

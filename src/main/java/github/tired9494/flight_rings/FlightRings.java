@@ -51,99 +51,101 @@ public class FlightRings implements ModInitializer {
             basicIdentifier += "_alt";
         }
 
-        LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, supplier, setter) -> {
-            if (DUNGEON_CHEST_ID.equals(id)) {
-                LootPool pool = FabricLootPoolBuilder.builder()
-                        .withEntry(ItemEntry.builder(BASIC_RING).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .build();
-                supplier.withPool(pool);
-            }
-            else if (MINESHAFT_CHEST_ID.equals(id)) {
-                LootPool poolBuilder = FabricLootPoolBuilder.builder()
-                        .withEntry(ItemEntry.builder(BASIC_RING).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .build();
-                supplier.withPool(poolBuilder);
-            }
-            else if (DESERT_CHEST_ID.equals(id)) {
-                LootPool poolBuilder = FabricLootPoolBuilder.builder()
-                        .withEntry(ItemEntry.builder(BASIC_RING).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .build();
-                supplier.withPool(poolBuilder);
-            }
-            else if (END_CHEST_ID.equals(id)) {
-                LootPool poolBuilder = FabricLootPoolBuilder.builder()
-                        .withEntry(ItemEntry.builder(ADVANCED_RING).build())
-                        .withEntry(ItemEntry.builder(BASIC_RING).build())
-                        .withEntry(ItemEntry.builder(BASIC_RING).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .build();
-                supplier.withPool(poolBuilder);
-            }
-            else if (BASTION_CHEST_ID.equals(id)) {
-                LootPool poolBuilder = FabricLootPoolBuilder.builder()
-                        .withEntry(ItemEntry.builder(ADVANCED_RING).build())
-                        .withEntry(ItemEntry.builder(BASIC_RING).build())
-                        .withEntry(ItemEntry.builder(BASIC_RING).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .build();
-                supplier.withPool(poolBuilder);
-            }
-            else if (BONUS_CHEST_ID.equals(id)) {
-                LootPool poolBuilder = FabricLootPoolBuilder.builder()
-                        .withEntry(ItemEntry.builder(BASIC_RING).build())
-                        .withEntry(ItemEntry.builder(BASIC_RING).build())
-                        .withEntry(ItemEntry.builder(Items.AIR).build())
-                        .build();
-                supplier.withPool(poolBuilder);
-            }
-        });
+        if (getConfig().misc.chestLoot) {
+            LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, supplier, setter) -> {
+                if (DUNGEON_CHEST_ID.equals(id)) {
+                    LootPool pool = FabricLootPoolBuilder.builder()
+                            .withEntry(ItemEntry.builder(BASIC_RING).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .build();
+                    supplier.withPool(pool);
+                }
+                else if (MINESHAFT_CHEST_ID.equals(id)) {
+                    LootPool poolBuilder = FabricLootPoolBuilder.builder()
+                            .withEntry(ItemEntry.builder(BASIC_RING).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .build();
+                    supplier.withPool(poolBuilder);
+                }
+                else if (DESERT_CHEST_ID.equals(id)) {
+                    LootPool poolBuilder = FabricLootPoolBuilder.builder()
+                            .withEntry(ItemEntry.builder(BASIC_RING).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .build();
+                    supplier.withPool(poolBuilder);
+                }
+                else if (END_CHEST_ID.equals(id)) {
+                    LootPool poolBuilder = FabricLootPoolBuilder.builder()
+                            .withEntry(ItemEntry.builder(ADVANCED_RING).build())
+                            .withEntry(ItemEntry.builder(BASIC_RING).build())
+                            .withEntry(ItemEntry.builder(BASIC_RING).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .build();
+                    supplier.withPool(poolBuilder);
+                }
+                else if (BASTION_CHEST_ID.equals(id)) {
+                    LootPool poolBuilder = FabricLootPoolBuilder.builder()
+                            .withEntry(ItemEntry.builder(ADVANCED_RING).build())
+                            .withEntry(ItemEntry.builder(BASIC_RING).build())
+                            .withEntry(ItemEntry.builder(BASIC_RING).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .build();
+                    supplier.withPool(poolBuilder);
+                }
+                else if (BONUS_CHEST_ID.equals(id)) {
+                    LootPool poolBuilder = FabricLootPoolBuilder.builder()
+                            .withEntry(ItemEntry.builder(BASIC_RING).build())
+                            .withEntry(ItemEntry.builder(BASIC_RING).build())
+                            .withEntry(ItemEntry.builder(Items.AIR).build())
+                            .build();
+                    supplier.withPool(poolBuilder);
+                }
+            });
+        }
         Registry.register(Registry.ITEM, new Identifier("flight_rings", basicIdentifier), BASIC_RING);
         Registry.register(Registry.ITEM, new Identifier("flight_rings", advancedIdentifier), ADVANCED_RING);
     }
