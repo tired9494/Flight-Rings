@@ -1,9 +1,21 @@
 package tired9494.flight_rings;
 
+import eu.midnightdust.lib.config.MidnightConfig;
+import net.minecraft.resources.ResourceLocation;
+import tired9494.flight_rings.registry.ModEffects;
+import tired9494.flight_rings.registry.ModItems;
+
 public final class FlightRings {
     public static final String MOD_ID = "flight_rings";
 
     public static void init() {
+        MidnightConfig.init(MOD_ID, ModConfig.class);
+        ModItems.initItems();
+        ModEffects.initEffects();
         // Write common init code here.
+    }
+
+    public static ResourceLocation id(String id) {
+        return ResourceLocation.fromNamespaceAndPath(FlightRings.MOD_ID, id);
     }
 }
