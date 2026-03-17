@@ -20,7 +20,7 @@ public class ModItems {
     public static void initItems() {
         BASIC_FLIGHT_RING = registerItem("basic_ring", () ->
                 new BasicFlightRing(new Item.Properties()
-                        .durability(2048)
+                        .durability(ModConfig.basicRingDurability)
                         .stacksTo(1)
                         .arch$tab(CreativeModeTabs.TOOLS_AND_UTILITIES)
                         .rarity(Rarity.UNCOMMON),

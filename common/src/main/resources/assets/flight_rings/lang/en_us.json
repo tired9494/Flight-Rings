@@ -3,7 +3,20 @@
   "item.flight_rings.basic_ring": "Basic Flight Ring",
   "effect.flight_rings.flight": "Flight",
   "flight_rings.midnightconfig.title": "Flight Rings Config",
-  "flight_rings.midnightconfig.basicFlightPenalty": "Basic flight ring penalty",
-  "flight_rings.midnightconfig.advancedFlightPenalty": "Pure flight ring penalty"
+  "flight_rings.midnightconfig.category.basic_flight_ring": "Basic Flight Ring",
+  "flight_rings.midnightconfig.category.advanced_flight_ring": "Pure Flight Ring",
+  "flight_rings.midnightconfig.basicRingDurability": "Basic Ring Durability",
+  "flight_rings.midnightconfig.basicRingDurability.label.tooltip": "1 durability = 1 second of flight",
+  "flight_rings.midnightconfig.basicRingDurability.tooltip": "1 durability = 1 second of flight",
+  "flight_rings.midnightconfig.basicFlightPenalty": "Basic Ring Penalty Type",
+  "flight_rings.midnightconfig.basicHungerPenalty": "Basic Hunger Penalty Amount",
+  "flight_rings.midnightconfig.basicExperiencePenalty": "Basic XP Penalty Amount",
+  "flight_rings.midnightconfig.enum.FlightPenaltyType.XP": "XP",
+  "flight_rings.midnightconfig.enum.FlightPenaltyType.HUNGER": "Hunger",
+  "flight_rings.midnightconfig.enum.FlightPenaltyType.NONE": "None",
+  "flight_rings.midnightconfig.advancedRingDurability": "Pure Ring Durability",
+  "flight_rings.midnightconfig.advancedFlightPenalty": "Pure Ring Penalty Type",
+  "flight_rings.midnightconfig.advancedHungerPenalty": "Pure Hunger Penalty Amount",
+  "flight_rings.midnightconfig.advancedExperiencePenalty": "Pure XP Penalty Amount"
 }
 
