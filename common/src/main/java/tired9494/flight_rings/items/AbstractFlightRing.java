@@ -1,13 +1,18 @@
 package tired9494.flight_rings.items;
 
 
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.Item;
+import tired9494.flight_rings.FlightRings;
 import tired9494.flight_rings.ModConfig;
 
 //the "template" for other flight rings
 public abstract class AbstractFlightRing extends Item {
-    private PenaltyEffect penaltyEffect;
+    public PenaltyEffect penaltyEffect;
+    public Holder<MobEffect> flightEffect;
     public AbstractFlightRing(Properties properties, ModConfig.FlightPenaltyType flightPenaltyType) {
         super(properties);
         switch(flightPenaltyType) {
@@ -15,35 +20,40 @@ public abstract class AbstractFlightRing extends Item {
             case HUNGER -> penaltyEffect = new HungerPenaltyEffect();
             default -> penaltyEffect = new NoPenaltyEffect();
         }
+        flightEffect = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(BuiltInRegistries.MOB_EFFECT.get(FlightRings.id("flight")));
     }
     public abstract int getEnchantmentValue();
 
-    private abstract static class PenaltyEffect
+    public void regetFlightEffectHolder() {
+        flightEffect = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(BuiltInRegistries.MOB_EFFECT.get(FlightRings.id("flight")));
+    }
+
+    public abstract static class PenaltyEffect
     {
-        public abstract boolean canApply(ServerPlayer serverPlayer, int modifier);
-        public abstract void applyPenaltyTick(ServerPlayer serverPlayer, int modifier);
+        public abstract boolean canApply(ServerPlayer serverPlayer);
+        public abstract void applyPenaltyTick(ServerPlayer serverPlayer);
     }
     private static class HungerPenaltyEffect extends PenaltyEffect {
-        public boolean canApply(ServerPlayer serverPlayer, int modifier) {
+        public boolean canApply(ServerPlayer serverPlayer) {
             return true;
         }
-        public void applyPenaltyTick(ServerPlayer serverPlayer, int modifier) {
+        public void applyPenaltyTick(ServerPlayer serverPlayer) {
 
         }
     }
     private static class ExperiencePenaltyEffect extends PenaltyEffect {
-        public boolean canApply(ServerPlayer serverPlayer, int modifier) {
+        public boolean canApply(ServerPlayer serverPlayer) {
             return true;
         }
-        public void applyPenaltyTick(ServerPlayer serverPlayer, int modifier) {
+        public void applyPenaltyTick(ServerPlayer serverPlayer) {
 
         }
     }
     private static class NoPenaltyEffect extends PenaltyEffect {
-        public boolean canApply(ServerPlayer serverPlayer, int modifier) {
+        public boolean canApply(ServerPlayer serverPlayer) {
             return true;
         }
-        public void applyPenaltyTick(ServerPlayer serverPlayer, int modifier) {
+        public void applyPenaltyTick(ServerPlayer serverPlayer) {
 
         }
     }

@@ -13,7 +13,7 @@ public class Flight extends MobEffect {
     private static final int color = 0x9DE3CE;
     private int duration;
 
-    public Flight(ModConfig.FlightPenaltyType flightPenaltyType) {
+    public Flight() {
         super(MobEffectCategory.BENEFICIAL, color, ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, FastColor.ARGB32.color(0, color)));
     }
 

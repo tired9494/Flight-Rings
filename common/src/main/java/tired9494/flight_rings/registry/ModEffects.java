@@ -16,7 +16,7 @@ public class ModEffects {
 
     public static void initEffects(){
         FLIGHT = EFFECTS.register(FlightRings.id("flight"), () ->
-                new Flight(ModConfig.basicFlightPenalty));
+                new Flight());
 
         EFFECTS.register();
     }
