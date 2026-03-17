@@ -12,29 +12,16 @@ import tired9494.flight_rings.ModConfig;
 public class Flight extends MobEffect {
     private static final int color = 0x9DE3CE;
     private int duration;
-    private PenaltyEffect penaltyEffect;
 
     public Flight(ModConfig.FlightPenaltyType flightPenaltyType) {
         super(MobEffectCategory.BENEFICIAL, color, ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, FastColor.ARGB32.color(0, color)));
-        switch(flightPenaltyType) {
-            case XP -> penaltyEffect = new HungerPenaltyEffect();
-            case HUNGER -> penaltyEffect = new HungerPenaltyEffect();
-            default -> penaltyEffect = null;
-        }
     }
 
     public boolean applyEffectTick(LivingEntity livingEntity, int amplifier) {
         if (!livingEntity.level().isClientSide && livingEntity instanceof  ServerPlayer serverPlayer
                 && !serverPlayer.isCreative() && !serverPlayer.isSpectator()) {
             //server player is in survival...
-
-            if (penaltyEffect.canApply(serverPlayer, amplifier)) {
-                serverPlayer.getAbilities().mayfly = true;
-            }
-
-            if (serverPlayer.getAbilities().flying) {
-                penaltyEffect.applyPenaltyTick(serverPlayer, amplifier);
-            }
+            serverPlayer.getAbilities().mayfly = true;
 
             if (this.duration <= 1) {
                 serverPlayer.getAbilities().mayfly = false;
@@ -49,27 +36,6 @@ public class Flight extends MobEffect {
     {
         this.duration = duration;
         return duration >= 1;
-    }
-    private abstract class PenaltyEffect
-    {
-        public abstract boolean canApply(ServerPlayer serverPlayer, int modifier);
-        public abstract void applyPenaltyTick(ServerPlayer serverPlayer, int modifier);
-    }
-    private class HungerPenaltyEffect extends PenaltyEffect {
-        public boolean canApply(ServerPlayer serverPlayer, int modifier) {
-            return true;
-        }
-        public void applyPenaltyTick(ServerPlayer serverPlayer, int modifier) {
-
-        }
-    }
-    private class ExperiencePenaltyEffect extends PenaltyEffect {
-        public boolean canApply(ServerPlayer serverPlayer, int modifier) {
-            return true;
-        }
-        public void applyPenaltyTick(ServerPlayer serverPlayer, int modifier) {
-
-        }
     }
 
 }
