@@ -5,6 +5,7 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import tired9494.flight_rings.FlightRings;
 import tired9494.flight_rings.ModConfig;
 import tired9494.flight_rings.items.BasicFlightRing;
@@ -21,7 +22,8 @@ public class ModItems {
                 new BasicFlightRing(new Item.Properties()
                         .durability(2048)
                         .stacksTo(1)
-                        .arch$tab(CreativeModeTabs.TOOLS_AND_UTILITIES),
+                        .arch$tab(CreativeModeTabs.TOOLS_AND_UTILITIES)
+                        .rarity(Rarity.UNCOMMON),
                         ModConfig.basicFlightPenalty
                 )
         );

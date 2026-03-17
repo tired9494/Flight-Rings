@@ -1,5 +1,9 @@
 {
   "item.flight_rings.advanced_ring": "Pure Flight Ring",
-  "item.flight_rings.basic_ring": "Basic Flight Ring"
+  "item.flight_rings.basic_ring": "Basic Flight Ring",
+  "effect.flight_rings.flight": "Flight",
+  "flight_rings.midnightconfig.title": "Flight Rings Config",
+  "flight_rings.midnightconfig.basicFlightPenalty": "Basic flight ring penalty",
+  "flight_rings.midnightconfig.advancedFlightPenalty": "Pure flight ring penalty"
 }
 
