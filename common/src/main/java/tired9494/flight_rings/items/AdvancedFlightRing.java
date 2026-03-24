@@ -6,20 +6,22 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+import tired9494.flight_rings.FlightRings;
 import tired9494.flight_rings.ModConfig;
 
-public class BasicFlightRing extends AbstractFlightRing{
-    public BasicFlightRing(Properties properties, ModConfig.FlightPenaltyType flightPenaltyType) {
+public class AdvancedFlightRing extends AbstractFlightRing{
+    public AdvancedFlightRing(Properties properties, ModConfig.FlightPenaltyType flightPenaltyType) {
         super(properties, flightPenaltyType);
         switch(flightPenaltyType) {
-            case XP -> penaltyEffect = new BasicExperiencePenaltyEffect();
-            case HUNGER -> penaltyEffect = new BasicHungerPenaltyEffect();
+            case XP -> penaltyEffect = new AdvancedExperiencePenaltyEffect();
+            case HUNGER -> penaltyEffect = new AdvancedHungerPenaltyEffect();
             default -> penaltyEffect = new NoPenaltyEffect();
         }
     }
 
     public int getEnchantmentValue(){
-        return 3;
+        return 11;
     }
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
         if (!level.isClientSide && entity instanceof ServerPlayer serverPlayer && serverPlayer.tickCount % 10 == 0) {
@@ -28,9 +30,9 @@ public class BasicFlightRing extends AbstractFlightRing{
                 return;
             }
 
-            if (penaltyEffect.canApply(serverPlayer) || serverPlayer.isCreative() || stack.getComponents().has(DataComponents.UNBREAKABLE)) {
+            if ((penaltyEffect.canApply(serverPlayer) || serverPlayer.isCreative()) && (stack.getDamageValue() < stack.getMaxDamage() - 1 || stack.getComponents().has(DataComponents.UNBREAKABLE))) {
                 serverPlayer.addEffect(new MobEffectInstance(flightEffect, 200));
-                if (serverPlayer.getAbilities().flying && !serverPlayer.isSpectator() && !serverPlayer.isCreative()) {
+                if (serverPlayer.getAbilities().flying && serverPlayer.getKnownMovement().length()!=0 && !serverPlayer.isSpectator() && !serverPlayer.isCreative()) {
                     penaltyEffect.applyPenaltyTick(serverPlayer);
                     stack.hurtAndBreak(1, serverPlayer, serverPlayer.getEquipmentSlotForItem(stack));
                     if (stack.getDamageValue() == stack.getMaxDamage() - 1) {
@@ -42,23 +44,22 @@ public class BasicFlightRing extends AbstractFlightRing{
         }
     }
 
-    private static class BasicHungerPenaltyEffect extends PenaltyEffect {
+    private static class AdvancedHungerPenaltyEffect extends PenaltyEffect {
         public boolean canApply(ServerPlayer serverPlayer) {
             return serverPlayer.getFoodData().getFoodLevel() > 0;
         }
         public void applyPenaltyTick(ServerPlayer serverPlayer) {
-            boolean sprinting = serverPlayer.isSprinting();
-            serverPlayer.causeFoodExhaustion(sprinting ? ModConfig.basicHungerPenalty : ModConfig.basicHungerPenalty*2f);
+            serverPlayer.causeFoodExhaustion((float) ModConfig.advancedHungerPenalty);
         }
     }
-    private static class BasicExperiencePenaltyEffect extends PenaltyEffect {
+    private static class AdvancedExperiencePenaltyEffect extends PenaltyEffect {
         private double cumulativeXp;
         public boolean canApply(ServerPlayer serverPlayer) {
-            return serverPlayer.totalExperience >= ModConfig.basicExperiencePenalty;
+            FlightRings.LOGGER.info("Player has %d experience, %g needed!".formatted(serverPlayer.totalExperience, ModConfig.advancedExperiencePenalty));
+            return serverPlayer.totalExperience >= ModConfig.advancedExperiencePenalty;
         }
         public void applyPenaltyTick(ServerPlayer serverPlayer) {
-            boolean sprinting = serverPlayer.isSprinting();
-            cumulativeXp += sprinting ? ModConfig.basicExperiencePenalty : 2 * ModConfig.basicExperiencePenalty;
+            cumulativeXp += ModConfig.advancedExperiencePenalty;
             if (cumulativeXp >= 1) {
                 int xpCost = (int)cumulativeXp;
                 cumulativeXp -= xpCost;

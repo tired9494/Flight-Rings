@@ -1,5 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
+  "show_notification": true,
+  "category": "equipment",
   "pattern": [
     " S ",
     "I I",
@@ -14,7 +16,7 @@
     }
   },
   "result": {
-    "item": "flight_rings:advanced_ring",
+    "id": "flight_rings:advanced_ring",
     "count": 1
   }
 }

@@ -1,5 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
+  "show_notification": true,
+  "category": "equipment",
   "pattern": [
     " Q ",
     "G G",
@@ -14,8 +16,7 @@
     }
   },
   "result": {
-    "item": "flight_rings:basic_ring",
+    "id": "flight_rings:basic_ring",
     "count": 1
   }
 }
-

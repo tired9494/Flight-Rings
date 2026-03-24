@@ -15,11 +15,6 @@ public abstract class AbstractFlightRing extends Item {
     public Holder<MobEffect> flightEffect;
     public AbstractFlightRing(Properties properties, ModConfig.FlightPenaltyType flightPenaltyType) {
         super(properties);
-        switch(flightPenaltyType) {
-            case XP -> penaltyEffect = new ExperiencePenaltyEffect();
-            case HUNGER -> penaltyEffect = new HungerPenaltyEffect();
-            default -> penaltyEffect = new NoPenaltyEffect();
-        }
         flightEffect = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(BuiltInRegistries.MOB_EFFECT.get(FlightRings.id("flight")));
     }
     public abstract int getEnchantmentValue();
@@ -33,23 +28,8 @@ public abstract class AbstractFlightRing extends Item {
         public abstract boolean canApply(ServerPlayer serverPlayer);
         public abstract void applyPenaltyTick(ServerPlayer serverPlayer);
     }
-    private static class HungerPenaltyEffect extends PenaltyEffect {
-        public boolean canApply(ServerPlayer serverPlayer) {
-            return true;
-        }
-        public void applyPenaltyTick(ServerPlayer serverPlayer) {
 
-        }
-    }
-    private static class ExperiencePenaltyEffect extends PenaltyEffect {
-        public boolean canApply(ServerPlayer serverPlayer) {
-            return true;
-        }
-        public void applyPenaltyTick(ServerPlayer serverPlayer) {
-
-        }
-    }
-    private static class NoPenaltyEffect extends PenaltyEffect {
+    public static class NoPenaltyEffect extends PenaltyEffect {
         public boolean canApply(ServerPlayer serverPlayer) {
             return true;
         }
